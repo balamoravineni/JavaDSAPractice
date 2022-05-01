@@ -1,4 +1,5 @@
 import leetcode.MedianOfTwoSortedArrays;
+import linkedlists.SinglyLinkedList;
 
 import java.util.Arrays;
 
@@ -8,7 +9,31 @@ import arrays.TwoDimensionalArray;
     
 class Main {
     public static void main(String[] args) {
-        medianOfTwoSortedArrays();
+        singlyLinkedList();
+    }
+
+    private static void singlyLinkedList() {
+        SinglyLinkedList linkedList = new SinglyLinkedList();
+        // linkedList.insertAtHead(2);
+        // linkedList.insertAtHead(1);
+        linkedList.insertAtTail(3);
+        linkedList.insertAtHead(0);
+        linkedList.insert(1, 1);
+        linkedList.insert(2, 2);
+        linkedList.insertAtTail(4);
+        linkedList.insert(0, -1);
+        linkedList.insert(linkedList.size, 5);
+        linkedList.printList();
+        System.out.println("Size of SLL: " + linkedList.size);
+        linkedList.removeNode(2);
+        // linkedList.removeNode(6);
+        linkedList.removeNode(0);
+        linkedList.printList();
+        System.out.println("Size of SLL: " + linkedList.size);
+        // linkedList.insert(10, 10);
+        // linkedList.removeNode(5);
+        System.out.println("find in SLL: " + linkedList.find(0));
+
     }
 
     private static void medianOfTwoSortedArrays() {
