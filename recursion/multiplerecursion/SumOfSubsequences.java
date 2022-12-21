@@ -62,6 +62,13 @@ public class SumOfSubsequences {
   }
 
   public static int countAllSubsequencesOfSum(int[] arr, int givenSum, int low, int sumOfSubsequence) {
+
+    // slight optimization when array contains only positive numbers
+    // worst case scenario complexity is still 2^n
+    if(sumOfSubsequence>givenSum) {
+      return 0;
+    }
+    
     if(low>=arr.length) {
       if(sumOfSubsequence==givenSum) {
         return 1;
