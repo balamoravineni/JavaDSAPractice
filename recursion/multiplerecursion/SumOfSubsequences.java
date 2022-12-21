@@ -14,14 +14,14 @@ public class SumOfSubsequences {
     System.out.println("Given Sum: "+ sum);
     System.out.println("Output: ");
 
-    // printAllSubsequencesOfSum(arr, sum, 0, new ArrayList<>(), 0);
+    printAllSubsequencesOfSum(arr, sum, 0, new ArrayList<>(), 0);
 
     // boolean isPresent = printAnyOneSubsequenceOfSum(arr, sum, 0, new ArrayList<>(), 0);
     // if(!isPresent) {
     //   System.out.println("No such subsequence");
     // }
 
-    System.out.println(countAllSubsequencesOfSum(arr, sum, 0, new ArrayList<>(), 0));
+    System.out.println(countAllSubsequencesOfSum(arr, sum, 0, 0));
   }
 
   public static void printAllSubsequencesOfSum(int[] arr, int givenSum, int low, List<Integer> subsequence, int sumOfSubsequence) {
@@ -61,7 +61,7 @@ public class SumOfSubsequences {
     return false;
   }
 
-  public static int countAllSubsequencesOfSum(int[] arr, int givenSum, int low, List<Integer> subsequence, int sumOfSubsequence) {
+  public static int countAllSubsequencesOfSum(int[] arr, int givenSum, int low, int sumOfSubsequence) {
     if(low>=arr.length) {
       if(sumOfSubsequence==givenSum) {
         return 1;
@@ -69,12 +69,10 @@ public class SumOfSubsequences {
       return 0;
     }
     // not take element
-    int count1 = countAllSubsequencesOfSum(arr, givenSum, low+1, subsequence,  sumOfSubsequence);
+    int count1 = countAllSubsequencesOfSum(arr, givenSum, low+1,  sumOfSubsequence);
     // take element
-    subsequence.add(arr[low]);
-    int count2 = countAllSubsequencesOfSum(arr, givenSum, low+1, subsequence, sumOfSubsequence+arr[low]);
-    // int last = subsequence.get(subsequence.size()-1);
-    subsequence.remove(subsequence.size()-1);
+    int count2 = countAllSubsequencesOfSum(arr, givenSum, low+1, sumOfSubsequence+arr[low]);
+
     return count1+count2;
 
   }
