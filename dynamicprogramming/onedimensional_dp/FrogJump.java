@@ -10,7 +10,7 @@ public class FrogJump {
     System.out.println("Input: "+n);
     int[] heights = {10, 20, 30, 10};
     System.out.println(Arrays.toString(heights));
-    int k = 3;
+    int k = 2;
     System.out.println("k: "+k);
 
     // find minimum total energy required to reach from 0th step to n-1th step
