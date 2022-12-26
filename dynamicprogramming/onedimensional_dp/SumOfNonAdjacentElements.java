@@ -1,4 +1,4 @@
-package dynamicprogramming.twodimensional_dp;
+package dynamicprogramming.onedimensional_dp;
 
 import java.util.ArrayList;
 import java.util.List;
