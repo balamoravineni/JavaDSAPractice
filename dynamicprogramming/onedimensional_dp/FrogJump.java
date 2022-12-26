@@ -10,24 +10,43 @@ public class FrogJump {
     System.out.println("Input: "+n);
     int[] heights = {10, 20, 30, 10};
     System.out.println(Arrays.toString(heights));
+    int k = 3;
+    System.out.println("k: "+k);
 
     // find minimum total energy required to reach from 0th step to n-1th step
     // frog can jump one step or two steps at a time
     // energy requiredt to jump between 2 steps is given difference of respective elements in heights array
     System.out.println("Output: ");
-    System.out.println(frogJump(n, heights));
+    System.out.println(frogJump(n, heights,k));
   }
   
 
-    public static int frogJump(int n, int heights[]) {
-        return jumpSpaceOptimization(n, heights);
+    public static int frogJump(int n, int heights[], int k) {
+        // return jumpSpaceOptimization(n, heights);
         // Greedy algorithm doesn't work here, we need to check all possible scenarios using recursion
-        // int[] dp = new int[n];
-        // for(int i=0;i<n;i++) {
-        //     dp[i]=-1;
-        // }
+        int[] dp = new int[n];
+        for(int i=0;i<n;i++) {
+            dp[i]=-1;
+        }
         // return jump(n,heights, 0, dp);
         // return jumpTabulation(n, heights, n, dp);
+        return jumpTabulationWithKDistance(n, heights, n, dp, k);
+    }
+
+    // tabulation for k distance
+    public static int jumpTabulationWithKDistance(int n, int[] heights,int current, int[] dp, int k) {
+        dp[0] = 0;
+        for(current=1;current<n;current++) {
+            int min = Integer.MAX_VALUE;
+            for(int j=1; j<=k;j++) {
+                if(current-j>=0) {
+                    int val = dp[current-j] + Math.abs(heights[current]-heights[current-j]);
+                    min = Math.min(min, val);
+                }
+            }
+            dp[current] = min;
+        }
+        return dp[n-1];
     }
 
     // space optimization
