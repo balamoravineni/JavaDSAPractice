@@ -6,6 +6,9 @@ import java.util.List;
 public class SumOfNonAdjacentElements {
 	public static void main(String args[]) {
     
+		// You are given array of n integers.
+		// return max sum of subsequence with constraint that no two elements are adjacent in the given array
+		
 		int n = 4;
 		System.out.println("Input: " + n);
 		ArrayList<Integer> nums = new ArrayList<>();
