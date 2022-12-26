@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package dynamicprogramming.basics;
 
 public class ClimbingStairs {
   // from 0th stair to nth stair, print distinct ways of climibing
