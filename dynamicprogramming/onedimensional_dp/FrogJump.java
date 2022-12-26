@@ -19,32 +19,66 @@ public class FrogJump {
   }
   
 
-  public static int frogJump(int n, int heights[]) {
-
-    // Greedy algorithm doesn't work here, we need to check all possible scenarios using recursion
-    int[] dp = new int[n];
-    for(int i=0;i<n;i++) {
-        dp[i]=-1;
+    public static int frogJump(int n, int heights[]) {
+        return jumpSpaceOptimization(n, heights);
+        // Greedy algorithm doesn't work here, we need to check all possible scenarios using recursion
+        // int[] dp = new int[n];
+        // for(int i=0;i<n;i++) {
+        //     dp[i]=-1;
+        // }
+        // return jump(n,heights, 0, dp);
+        // return jumpTabulation(n, heights, n, dp);
     }
-    
-    return jump(n,heights, 0, dp);
-}
 
-public static int jump(int n, int[] heights,int ind, int[] dp) {
-    if(ind==n-1) {
-        return 0;
-    }
-    if(dp[ind]==-1) {
-        int energy = Math.abs(heights[ind]-heights[ind+1]) + jump(n,heights, ind+1, dp);
-        if(ind+2<=n-1) {
-            int temp = Math.abs(heights[ind]-heights[ind+2]) + jump(n,heights, ind+2, dp);
-            if(temp<energy) {
-                energy = temp;
+    // space optimization
+    public static int jumpSpaceOptimization(int n, int[] heights) {
+        int prev2 = Integer.MAX_VALUE;
+        int prev1 = 0;
+        int current = Integer.MAX_VALUE;
+        for(int ind=1;ind<n;ind++) {
+            int left = prev1 + Math.abs(heights[ind]-heights[ind-1]);
+            int right = Integer.MAX_VALUE;
+            if(ind>1) {
+                right = prev2 + Math.abs(heights[ind]-heights[ind-2]);
             }
-         }
-        dp[ind] = energy;
+            current = Math.min(left, right);
+            prev2 = prev1;
+            prev1 = current;
+        }
+        return current;
     }
-    
-    return dp[ind];
-}
+
+    // tabulation
+    public static int jumpTabulation(int n, int[] heights,int current, int[] dp) {
+        dp[0] = 0;
+        for(current=1;current<n;current++) {
+            int left = dp[current-1] + Math.abs(heights[current]-heights[current-1]);
+            int right = Integer.MAX_VALUE;
+            if(current>1) {
+                right = dp[current-2] + Math.abs(heights[current]-heights[current-2]);
+            }
+            dp[current] = Math.min(left, right);
+        }
+        return dp[n-1];
+    }
+
+    // memoization
+    public static int jump(int n, int[] heights,int ind, int[] dp) {
+        if(ind==n-1) {
+            return 0;
+        }
+        if(dp[ind]==-1) {
+            int energy = Math.abs(heights[ind]-heights[ind+1]) + jump(n,heights, ind+1, dp);
+            if(ind+2<=n-1) {
+                int temp = Math.abs(heights[ind]-heights[ind+2]) + jump(n,heights, ind+2, dp);
+                if(temp<energy) {
+                    energy = temp;
+                }
+            }
+            dp[ind] = energy;
+        }
+        
+        return dp[ind];
+    }
+
 }
