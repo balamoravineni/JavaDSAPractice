@@ -82,9 +82,15 @@ public class NinjasTraining {
   }
   
   public static int train(int n, int[][] points, int ind, int lastActivity,int[][] dp) {
-      if(ind<0) {
-          return 0;
+    if(ind==0) {
+      int maxMeritPoints = Integer.MIN_VALUE;
+      for(int i=1;i<=3;i++) {
+          if(lastActivity!=i) {
+              maxMeritPoints = Math.max(maxMeritPoints, points[0][i-1]);
+          }
       }
+      return maxMeritPoints;
+  }
       // pick any of the three activities
       if(dp[ind][lastActivity]==-1) {   
           int maxMeritPoints = Integer.MIN_VALUE;
