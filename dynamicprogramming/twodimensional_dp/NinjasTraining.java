@@ -34,28 +34,26 @@ public class NinjasTraining {
   }
   
   public static int trainSpaceOptimization(int n, int[][] points) {
-      int prev1 = points[0][0];
-      int prev2 = points[0][1];
-      int prev3 = points[0][2];
-      for(int ind=1; ind<n;ind++) {
-          int temp1 = 0, temp2 = 0, temp3 = 0;
-          for(int j=1;j<=3;j++) {
-              int current = points[ind][j-1];
-              if(j==1) {
-                  temp1 = current + Math.max(prev2, prev3);
-              }
-              else if(j==2) {
-                  temp2 = current + Math.max(prev1, prev3);
-              }
-              else { // j==3
-                  temp3 = current + Math.max(prev1, prev2);
+    int[] prev = new int[3];
+    prev[0] = points[0][0];
+    prev[1] = points[0][1];
+    prev[2] = points[0][2];
+    for(int ind=1; ind<n;ind++) {
+      int[] temp = new int[3];
+      for(int j=0;j<3;j++) {
+          temp[j] = Integer.MIN_VALUE;
+          for(int k=0;k<3;k++) {
+              if(k!=j) {
+                  temp[j] = Math.max(temp[j], prev[k]);
               }
           }
-          prev1 = temp1;
-          prev2 = temp2;
-          prev3 = temp3;
+          temp[j] += points[ind][j];
       }
-      return Math.max(prev1, Math.max(prev2, prev3));
+      prev[0] = temp[0];
+      prev[1] = temp[1];
+      prev[2] = temp[2];
+    }
+    return Math.max(prev[0], Math.max(prev[1], prev[2]));
   }
   
   public static int trainTabulation(int n, int[][] points,int[][] dp) {
@@ -66,15 +64,11 @@ public class NinjasTraining {
           for(int j=1;j<=3;j++) {
               dp[ind][j] = points[ind][j-1];
               int temp = 0;
-              if(j==1) {
-                  temp = Math.max(dp[ind-1][2], dp[ind-1][3]);
-              }
-              else if(j==2) {
-                  temp = Math.max(dp[ind-1][1], dp[ind-1][3]);
-              }
-              else { // j==3
-                  temp = Math.max(dp[ind-1][1], dp[ind-1][2]);
-              }
+              for(int k=1;k<=3;k++) {
+                if(k!=j) {
+                    temp = Math.max(temp, dp[ind-1][k]);
+                }
+            }
               dp[ind][j] += temp;
           }
       }
