@@ -5,8 +5,9 @@ import java.util.Arrays;
 public class NinjasTraining {
 
   public static void main(String args[]) {
-    // You are given array of n integers corresponding to n house ARRANGED IN A CIRCLE.
-		// return max value a robber can rob from the houses with constraint that if a robber robs any two adjacent houses, alarm will raise.
+    // You are given a 2d array of n*3 points corresponding to each day & activity
+		// return max merit points a ninja can earn 
+    // on the constraint that a ninja can't do same activity in 2 consecutive days, because a ninjs has to improve all skills 
 		
 		int n = 3;
 		System.out.println("Input: " + n);

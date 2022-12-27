@@ -6,7 +6,8 @@ public class HouseRobber2 {
 
   public static void main(String args[]) {
     // You are given array of n integers corresponding to n house ARRANGED IN A CIRCLE.
-		// return max value a robber can rob from the houses with constraint that if a robber robs any two adjacent houses, alarm will raise.
+		// return max value a robber can rob from the houses 
+    // with constraint that if a robber robs any two adjacent houses, alarm will raise.
 		
 		int n = 5;
 		System.out.println("Input: " + n);
