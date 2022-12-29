@@ -1,4 +1,4 @@
-# Graphs Notes (fopr revision):
+# Graphs Notes (for revision):
 
 1. Introduction - https://takeuforward.org/graph/introduction-to-graph/
 2. Graph Representation in C++ - https://takeuforward.org/graph/graph-representation-in-c/
