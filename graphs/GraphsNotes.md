@@ -5,3 +5,5 @@
 3. Connected components - https://takeuforward.org/graph/connected-components-in-graphs/
 4. BFS - https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
 5. DFS - https://takeuforward.org/data-structure/depth-first-search-dfs/
+6. Number of Provinces - https://takeuforward.org/data-structure/number-of-provinces/
+
